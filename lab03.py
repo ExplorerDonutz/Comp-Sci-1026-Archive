@@ -22,11 +22,10 @@ else:
     print("You did not want to use any numbers today.")
 
 accountTotal = 50
-# Should be >, not =<
-while accountTotal > 20:
+# Should be >=, not =<
+while accountTotal >= 20:
+    print(accountTotal)
     # Needs to take 1 away each loop
     accountTotal -= 1
-    print(accountTotal)
-
 
 print("Your account has reached $20")
