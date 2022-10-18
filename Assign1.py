@@ -2,7 +2,6 @@
 # 21 September 2022
 # Computes personal inflation given by user and determines type of inflation (low, moderate, high, or hyper)
 
-print("The car went, \n\"vroom!\"")
 # Get the user's year of interest and the number of expenditure categories
 year = input("Please enter the year that you want to calculate the personal interest rate for: ")
 categories = int(input("Please enter the number of expenditure categories: "))
