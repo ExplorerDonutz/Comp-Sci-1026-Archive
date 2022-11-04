@@ -47,20 +47,16 @@ def nationalRank(reader, selectedCountry):
         if row[2].upper() == selectedCountry.upper():
             unis.append(row)
 
-    # Sort by national rank
-    swapped = False
-    # Check all elements in array
-    for i in range(len(unis) - 1):
-        for j in range(0, len(unis) - i - 1):
-            # Swap if the element is greater than the next element
-            if unis[j][3] > unis[j + 1][3]:
-                swapped = True
-                unis[j], unis[j + 1] = unis[j + 1], unis[j]
-        if not swapped:
-            # No swaps, exit the for loop
-            return
+    # Find best rank
+    best = unis[0]
 
-    return f"At national rank => {unis[0][3]} the university name is => {unis[0][1]}\n"
+    # Check all elements in array
+    for i in range(1, len(unis)):
+        # If current element is less than the best, replace best with this element
+        if unis[i][3] < best[3]:
+            best = unis[i]
+
+    return f"At national rank => {best[3]} the university name is => {best[1]}\n"
 
 
 def averageScore(reader, selectedCountry):
@@ -75,7 +71,45 @@ def averageScore(reader, selectedCountry):
         avg += float(uni[len(uni) - 1])
 
     avg /= len(unis)
-    return f"The average score => {avg}\n"
+    return avg
+
+
+def continentRelativeScore(rankReader, capitalReader, capitalFile, rankFile, avg, selectedCountry):
+    countries = []
+    continent = ""
+    scores = []
+
+    # Find which continent the country is in
+    for row in capitalReader:
+        if row[0].upper() == selectedCountry.upper():
+            continent = row[len(row) - 1]
+
+    capitalFile.seek(1)
+
+    # Find all countries in continent
+    for row in capitalReader:
+        if row[len(row) - 1] == continent:
+            countries.append(row[0])
+
+    rankFile.seek(1)
+
+    # Get all scores from all the countries in the continent
+    for row in rankReader:
+        for country in countries:
+            if row[2] == country:
+                scores.append(float(row[len(row) - 1]))
+
+    # Sort by national rank
+    best = scores[0]
+
+    # Check all elements in array
+    for i in range(1, len(scores)):
+        # If current element is greater than the best, replace best with this element
+        if scores[i] > best:
+            best = scores[i]
+
+    # Add info for the average as well as continent relative score
+    return f"The average score => {avg}\n The relative score to the top university in {continent} is => ({avg} / {best}) x 100% = {(avg / best) * 100}%"
 
 
 def printToOutput(outputInfo):
@@ -83,7 +117,6 @@ def printToOutput(outputInfo):
         file.write(outputInfo)
 
 
-# Open TopUni file and sort information
 def getInformation(selectedCountry, rankingFileName, capitalsFileName):
     info = ""
 
@@ -101,8 +134,10 @@ def getInformation(selectedCountry, rankingFileName, capitalsFileName):
     info += internationalRank(rankReader, selectedCountry)
     rankFile.seek(1)
     info += nationalRank(rankReader, selectedCountry)
+
     rankFile.seek(1)
-    info += averageScore(rankReader, selectedCountry)
+    capitalFile.seek(1)
+    info += continentRelativeScore(rankReader, capitalReader, capitalFile, rankFile, averageScore(rankReader, selectedCountry), selectedCountry)
 
     printToOutput(info)
 

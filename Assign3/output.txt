@@ -4,3 +4,4 @@ Available continents => Continent, Asia, Australia, North America, Europe, Afric
 At international rank => 13 the university name is => University of Tokyo
 At national rank => 1 the university name is => Kyoto University
 The average score => 85.35
+ The relative score to the top university in Asia is => (85.35 / 89.8) x 100% = 95.0445434298441%
