@@ -1,0 +1,3 @@
+Total number of universities => 100
+Available countries => USA, United Kingdom, Japan, France, Canada, Switzerland, South Korea, Sweden, Denmark, Germany, China, Australia, Israel, Netherlands, Norway, Singapore, Taiwan, 
+Available continents => Asia, Australia, North America, Europe, Africa, 

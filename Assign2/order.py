@@ -2,14 +2,18 @@
 # 17 October 2022
 # Gets user input to create pizza order
 
-from Assign2.pizzaReceipt import generateReceipt
+import pizzaReceipt
 
-TOPPINGS = ("ONION", "TOMATO", "GREEN PEPPER", "MUSHROOM", "OLIVE", "SPINACH", "BROCCOLI", "PINEAPPLE", "HOT PEPPER", "PEPPERONI", "HAM", "BACON", "GROUND BEEF", "CHICKEN", "SAUSAGE")
+TOPPINGS = (
+    "ONION", "TOMATO", "GREEN PEPPER", "MUSHROOM", "OLIVE", "SPINACH", "BROCCOLI", "PINEAPPLE", "HOT PEPPER",
+    "PEPPERONI",
+    "HAM", "BACON", "GROUND BEEF", "CHICKEN", "SAUSAGE")
 
 ordering = True
 
 begin = input("Do you want to order a pizza? ").lower()
 
+# User does not want to order anything
 if begin == "q" or begin == "no":
     ordering = False
 
@@ -37,7 +41,8 @@ while ordering:
     # Prompt user for pizza toppings until they have all the toppings they desire
     toppings = []
     while choosingToppings:
-        topping = input("Type in one of our toppings to add it to your pizza. To see the list of toppings, enter \n\"LIST\". When you are done adding toppings, enter \"X\"\n").upper()
+        topping = input(
+            "Type in one of our toppings to add it to your pizza. To see the list of toppings, enter \n\"LIST\". When you are done adding toppings, enter \"X\"\n").upper()
         if topping == "X":
             choosingToppings = False
         elif topping == "LIST":
@@ -62,4 +67,5 @@ while ordering:
     finished = input("Do you want to continue ordering? ").upper()
     if finished == "Q" or finished == "NO":
         ordering = False
-generateReceipt(pizzas)
+
+pizzaReceipt.generateReceipt(pizzas)
