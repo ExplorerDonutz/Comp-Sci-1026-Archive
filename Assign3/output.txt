@@ -1,7 +1,10 @@
-Total number of universities => 100
+Total number of universities => 101
 Available countries => Country, USA, United Kingdom, Japan, France, Canada, Switzerland, South Korea, Sweden, Denmark, Germany, China, Australia, Israel, Netherlands, Norway, Singapore, Taiwan, 
 Available continents => Continent, Asia, Australia, North America, Europe, Africa, 
-At international rank => 13 the university name is => University of Tokyo
-At national rank => 1 the university name is => Kyoto University
+At international rank => 13 the university name is => UNIVERSITY OF TOKYO
+At national rank => 1 the university name is => KYOTO UNIVERSITY
 The average score => 85.35
- The relative score to the top university in Asia is => (85.35 / 89.8) x 100% = 95.0445434298441%
+The relative score to the top university in ASIA is => (85.35 / 89.8) x 100% = 95.0445434298441%
+The capital is => TOKYO
+The universities that contain the capital name =>
+#1 UNIVERSITY OF TOKYO
