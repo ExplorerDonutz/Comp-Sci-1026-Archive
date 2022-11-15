@@ -73,7 +73,9 @@ def averageScore(reader, selectedCountry):
         avg += float(uni[len(uni) - 1])
 
     avg /= len(unis)
-    return avg
+
+    # Return rounded to 2 digits
+    return round(avg, 2)
 
 
 def continentRelativeScore(rankReader, capitalReader, capitalFile, rankFile, avg, selectedCountry):
@@ -111,7 +113,7 @@ def continentRelativeScore(rankReader, capitalReader, capitalFile, rankFile, avg
             best = scores[i]
 
     # Add info for the average as well as continent relative score
-    return f"The average score => {avg}\nThe relative score to the top university in {continent.upper()} is => ({avg} / {best}) x 100% = {(avg / best) * 100}%\n"
+    return f"The average score => {avg}%\nThe relative score to the top university in {continent.upper()} is => ({avg} / {best:0.2f}) x 100% = {(avg / best) * 100:0.2f}%\n"
 
 
 def capitalCity(capitalReader, selectedCountry):
@@ -155,17 +157,16 @@ def getInformation(selectedCountry, rankingFileName, capitalsFileName):
     info = ""
 
     rankFile = open(rankingFileName)
-    # Seek to skip the heading
-    rankFile.seek(1)
     rankReader = csv.reader(rankFile)
-    # Use seek to reset the reader back to the start
-    rankFile.seek(1)
+    # Skip heading
+    next(rankReader)
     info += getUniversitiesAndCountries(rankReader)
 
     capitalFile = open(capitalsFileName)
     capitalReader = csv.reader(capitalFile)
     info += getContinents(capitalReader)
 
+    # Return to top (below heading)
     rankFile.seek(1)
     info += internationalRank(rankReader, selectedCountry)
     rankFile.seek(1)
