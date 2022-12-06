@@ -1,3 +1,7 @@
+# Michael Quick
+# 06 December 2022
+# Loads data from airport and flight files and returns information from them
+
 from Flight import *
 from Airport import *
 

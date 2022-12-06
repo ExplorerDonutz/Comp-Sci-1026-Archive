@@ -1,3 +1,6 @@
+# Michael Quick
+# 06 December 2022
+# Object used for holding information about airports
 class Airport:
     def __init__(self, code, city, country):
         self.code = code

@@ -1,3 +1,7 @@
+# Michael Quick
+# 06 December 2022
+# Object used for holding information about flights
+
 import Airport
 
 
